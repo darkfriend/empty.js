@@ -1,6 +1,6 @@
 {
-  "name": "empty",
-  "version": "1.0.0",
+  "name": "empty-lite",
+  "version": "1.0.1",
   "description": "Check array, string, object on empty",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,8 @@
     "check",
     "condition",
     "string",
-    "helper"
+    "helper",
+    "lite"
   ],
   "author": "darkfriend",
   "license": "ISC",

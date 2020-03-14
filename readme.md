@@ -1,6 +1,10 @@
 Check empty (javascript)
 =====
 
+## How Install
+
+``npm i empty-lite``
+
 ## How to use?
 
 ```javascript
