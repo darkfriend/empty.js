@@ -1,0 +1,27 @@
+{
+  "name": "empty",
+  "version": "1.0.0",
+  "description": "Check array, string, object on empty",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkfriend/empty.js.git"
+  },
+  "keywords": [
+    "empty",
+    "array",
+    "check",
+    "condition",
+    "string",
+    "helper"
+  ],
+  "author": "darkfriend",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darkfriend/empty.js/issues"
+  },
+  "homepage": "https://github.com/darkfriend/empty.js#readme"
+}
