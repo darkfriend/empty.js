@@ -3,7 +3,9 @@ Check empty (javascript)
 
 ## How Install
 
-``npm i empty-lite``
+```bash 
+npm i empty-lite -S
+```
 
 ## How to use?
 
@@ -40,4 +42,18 @@ empty(variable); // true
 // check empty Number
 variable = 0;
 empty(variable); // true
+
+// check Date
+variable = new Date();
+empty(variable); // false
+
+// check empty function
+variable = function(){};
+empty(variable); // true
+```
+
+## Testing
+
+```bash 
+cd ./node_modules/empty-lite && npm i && npm test 
 ```

@@ -7,10 +7,10 @@
  * @return {boolean}
  */
 function empty(variable) {
-    return (variable === undefined || variable === "" || variable === 0 || variable === "0" || variable === null || variable === false || (typeof variable === 'object' && Object.values(variable).length === 0));
+    return ( variable === undefined || variable === "" || variable === 0 || variable === "0" || variable === null || variable === false || (typeof variable === 'object' && (Object.values(variable).length === 0 && (typeof variable.constructor() !== 'string') )) || (typeof variable === 'function' && empty(variable()) ) );
 }
 
 module.exports = empty;
 
 // Allow use of default import syntax in TypeScript
-// module.exports.default = empty;
+module.exports.default = empty;
