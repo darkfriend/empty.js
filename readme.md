@@ -108,3 +108,7 @@ empty(variable, 1); // true
 ```bash 
 cd ./node_modules/empty-lite && npm i && npm test 
 ```
+
+## License
+
+  MIT
