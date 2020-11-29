@@ -17,10 +17,16 @@
     "condition",
     "string",
     "helper",
-    "lite"
+    "lite",
+    "validation",
+    "map",
+    "object",
+    "set",
+    "value",
+    "file"
   ],
   "author": "darkfriend",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/darkfriend/empty.js/issues"
   },

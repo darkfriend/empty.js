@@ -38,7 +38,8 @@ variable = {};
 empty(variable); // true
 empty(variable.param); // true (no throw exception)
 empty(variable['param']); // true (no throw exception)
-empty(variable.param.subParam); // throw exception!
+empty(variable.param.subParam); // throw exception! - bad
+empty(variable.param?.subParam); // true (no throw exception) - good (stage-3)
 
 variable = {a:0};
 empty(variable.a); // true
