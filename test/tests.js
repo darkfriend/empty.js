@@ -100,7 +100,40 @@ it('empty(new Date()); // false', () => {
     assert.equal(empty(variable), false);
 });
 
-it('function(){} // true', () => {
+it('empty(function(){}); // false', () => {
     variable = function(){};
-    assert.equal(empty(variable), true);
+    assert.equal(empty(variable), false);
+});
+
+it('strict empty(function(){}); // true', () => {
+    variable = function(){};
+    assert.equal(empty(variable, 1), true);
+});
+
+it('empty(function(){ return \'\'; }); // false', () => {
+    variable = function(){
+        return '';
+    };
+    assert.equal(empty(variable), false);
+});
+
+it('strict empty(function(){ return \'\'; }); // true', () => {
+    variable = function(){
+        return '';
+    };
+    assert.equal(empty(variable, 1), true);
+});
+
+it('empty(function(){ return 0; }); // false', () => {
+    variable = function(){
+        return 0;
+    };
+    assert.equal(empty(variable), false);
+});
+
+it('strict empty(function(){ return 0; }); // true', () => {
+    variable = function(){
+        return 0;
+    };
+    assert.equal(empty(variable, 1), true);
 });

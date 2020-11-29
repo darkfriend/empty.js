@@ -3,13 +3,33 @@ Check empty (javascript)
 
 ## How Install
 
-```bash 
+``` 
 npm i empty-lite -S
+```
+
+### import
+```javascript
+import empty from 'empty-lite';
+```
+or
+```javascript
+const empty = require('empty-lite');
 ```
 
 ## How to use?
 
+### parameters
+
+* `variable` - mixed data for check
+* `strict` - mode for chek
+    * `0` - no strict mode (**default**)
+    * `1` - strict mode for check result in function
+
+### examples
+
 ```javascript
+import empty from 'empty-lite';
+
 let variable;
 empty(variable); // true
 
@@ -49,7 +69,37 @@ empty(variable); // false
 
 // check empty function
 variable = function(){};
-empty(variable); // true
+empty(variable); // false
+
+// check empty function with strict
+variable = function(){};
+empty(variable, 1); // true
+
+// check result empty function with strict
+variable = function(){
+    return 0;
+};
+empty(variable); // false
+
+// check result empty function without strict
+variable = function(){
+    return 0;
+};
+empty(variable, 1); // true
+
+// check result empty function with strict
+variable = function(){
+    return '';
+};
+empty(variable); // false
+
+
+
+// check result empty function without strict
+variable = function(){
+    return '';
+};
+empty(variable, 1); // true
 ```
 
 ## Testing
