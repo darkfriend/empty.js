@@ -1,6 +1,16 @@
 Check empty (javascript)
 =====
 
+## What checks for empty
+* undefined
+* null
+* string
+* number
+* array
+* object
+* function
+* date
+
 ## How Install
 
 ``` 
@@ -18,14 +28,122 @@ const empty = require('empty-lite');
 
 ## How to use?
 
+```
+empty(variable, mode);
+```
+
 ### parameters
 
 * `variable` - mixed data for check
-* `strict` - mode for chek
-    * `0` - no strict mode (**default**)
-    * `1` - strict mode for check result in function
+* `mode` - mode bitwise for check
+    * `0` - base mode (**default**)
+    * `1` - check result function
+    * `2` - zero is not empty
+    * `4` - empty string is not empty
+    * `8` - empty object is not empty
+  
+## Results
 
-### examples
+### undefined and null
+
+```javascript
+empty(undefined); // true
+empty(null); // true
+```
+
+### number
+
+```javascript
+empty("0"); // true
+empty("1"); // false
+empty("0.00"); // true
+empty("0.01"); // false
+empty(0); // true
+empty(1); // false
+empty(0.00); // true
+empty(0.01); // false
+
+// with mode (2 - then 0 not empty)
+empty(1, 1|2); // false
+empty(0, 1|2); // false
+empty(0, 2|4); // false
+empty(0.00, 2|4); // false
+empty("0.00", 2|4); // false
+empty(0.00, 2); // false
+```
+
+### string
+
+```javascript
+empty(""); // true
+empty(" "); // true
+empty("sdfsdf"); // false
+
+// with mode (4 - then "" not empty)
+empty(" ", 2|4); // false
+empty(" ", 2); // true
+empty("", 2|4); // false
+empty("", 2); // true
+empty("dssad", 2|4); // false
+```
+
+### array
+
+```javascript
+empty({a:0}.a); // true
+empty({a:1}.a); // false
+empty([]); // true
+empty([1]); // true
+empty([0]); // false
+empty([0][0]); // true
+empty([1][0]); // false
+```
+
+### object
+
+```javascript
+empty({}); // true
+empty({}.param); // true
+empty({}['param']); // true
+empty({}.param.subParam); // throw exception!
+empty({}.param?.subParam); // no exception
+
+// with mode (8 - then {} not empty)
+empty({}, 2|4|8); // false
+empty({}, 2|4); // true
+```
+
+### function
+
+```javascript
+empty(function(){}); // false
+empty(function(){ return ''; }); // false
+empty(function(){ return 0; }); // false
+
+// with mode (1 - then check empty result function)
+empty(function(){}, 1); // true
+empty(function(){ return ''; }, 1); // true
+empty(function(){ return 0; }, 1); // true
+```
+
+### date
+
+```javascript
+empty(new Date()); // false
+```
+
+## What are modes
+```javascript
+import emptyMode from 'empty-lite/src/emptyMode';
+
+emptyMode.base === 0 // base mode
+emptyMode.function === 1 // check result function
+emptyMode.zero === 2 // zero is not empty
+emptyMode.string === 4 // empty string is not empty
+emptyMode.object === 8 // empty object is not empty
+```
+
+## Examples
 
 ```javascript
 import empty from 'empty-lite';
