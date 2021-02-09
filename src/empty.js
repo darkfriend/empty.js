@@ -6,11 +6,14 @@ const {isNumber} = require('isnmbr');
  * Check variable on empty
  * @author darkfriend <hi@darkfriend.ru>
  * @param {*} variable
- * @param {int} strict bit for any strict mode (0 - no strict, 1 - then check result function)
+ * @param {int} mode Bitwise for any mode (0 - no strict, 1 - then check result function, 2 - then 0 not empty, 4 - then "" not empty, 8 - then "{}" not empty )
  * @return {boolean}
  */
-function empty(variable, strict= 0) {
-    return ( variable === undefined || variable === "" || variable === 0 || (isNumber(variable) && parseFloat(variable)===0) || variable === null || variable === false || (typeof variable === 'object' && (Object.values(variable).length === 0 && (typeof variable.constructor() !== 'string') )) || (typeof variable === 'function' && (strict ? empty(variable()) : false) ) );
+function empty(variable, mode= 0) {
+    if(mode) {
+        return ( variable === undefined || (!(mode&4) && (variable === "" || variable === " ")) || (!(mode&2) && (variable === 0 || (isNumber(variable) && parseFloat(variable)===0))) || variable === null || variable === false || (typeof variable === 'object' && (!(mode&8) && Object.values(variable).length === 0 && (typeof variable.constructor() !== 'string') )) || (typeof variable === 'function' && ((mode&1) ? empty(variable()) : false) ) );
+    }
+    return ( variable === undefined || variable === "" || variable === " " || variable === 0 || (isNumber(variable) && parseFloat(variable)===0) || variable === null || variable === false || (typeof variable === 'object' && (Object.values(variable).length === 0 && (typeof variable.constructor() !== 'string') )) || (typeof variable === 'function' && (mode ? empty(variable()) : false) ) );
 }
 
 module.exports = empty;
