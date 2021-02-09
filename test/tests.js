@@ -85,6 +85,14 @@ it('empty("1"); // false', () => {
     assert.equal(empty(variable), false);
 });
 
+it('empty("0.00"); // true', () => {
+    variable = '0.00';
+    assert.equal(empty(variable), true);
+});
+it('empty("0.01"); // false', () => {
+    variable = '0.01';
+    assert.equal(empty(variable), false);
+});
 
 it('empty(0); // true', () => {
     variable = 0;
@@ -95,10 +103,21 @@ it('empty(1); // false', () => {
     assert.equal(empty(variable), false);
 });
 
+it('empty(0.00); // true', () => {
+    variable = 0.00;
+    assert.equal(empty(variable), true);
+});
+it('empty(0.01); // false', () => {
+    variable = 0.01;
+    assert.equal(empty(variable), false);
+});
+
+
 it('empty(new Date()); // false', () => {
     variable = new Date();
     assert.equal(empty(variable), false);
 });
+
 
 it('empty(function(){}); // false', () => {
     variable = function(){};

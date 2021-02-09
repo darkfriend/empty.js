@@ -1,5 +1,7 @@
 'use strict';
 
+const {isNumber} = require('isnmbr');
+
 /**
  * Check variable on empty
  * @author darkfriend <hi@darkfriend.ru>
@@ -8,7 +10,7 @@
  * @return {boolean}
  */
 function empty(variable, strict= 0) {
-    return ( variable === undefined || variable === "" || variable === 0 || variable === "0" || variable === null || variable === false || (typeof variable === 'object' && (Object.values(variable).length === 0 && (typeof variable.constructor() !== 'string') )) || (typeof variable === 'function' && (strict ? empty(variable()) : false) ) );
+    return ( variable === undefined || variable === "" || variable === 0 || (isNumber(variable) && parseFloat(variable)===0) || variable === null || variable === false || (typeof variable === 'object' && (Object.values(variable).length === 0 && (typeof variable.constructor() !== 'string') )) || (typeof variable === 'function' && (strict ? empty(variable()) : false) ) );
 }
 
 module.exports = empty;

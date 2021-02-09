@@ -64,6 +64,13 @@ empty(variable); // true
 variable = 0;
 empty(variable); // true
 
+variable = '0.00';
+empty(variable); // true
+
+// check empty Number
+variable = 0.00;
+empty(variable); // true
+
 // check Date
 variable = new Date();
 empty(variable); // false
