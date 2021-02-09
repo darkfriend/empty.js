@@ -32,9 +32,9 @@
   },
   "homepage": "https://github.com/darkfriend/empty.js#readme",
   "devDependencies": {
-    "chai": "^4.2.0",
+    "chai": "^4.3.0",
     "minimist": "^1.2.5",
-    "mocha": "^7.1.0"
+    "mocha": "^7.2.0"
   },
   "dependencies": {
     "isnmbr": "^1.0.2"
