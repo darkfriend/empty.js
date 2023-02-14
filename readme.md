@@ -119,17 +119,30 @@ empty({}, 2|4); // true
 empty(function(){}); // false
 empty(function(){ return ''; }); // false
 empty(function(){ return 0; }); // false
+empty(function(){ return null; }); // false
+empty(function(){ return; }); // false
 
-// with mode (1 - then check empty result function)
+// with mode 1 then check empty result function
 empty(function(){}, 1); // true
 empty(function(){ return ''; }, 1); // true
 empty(function(){ return 0; }, 1); // true
+empty(function(){ return null; }, 1); // true
+empty(function(){ return; }, 1); // true
+
+// with mode 1 then check empty result function and zero avaiable
+empty(function(){}, 1|2); // true
+empty(function(){ return ''; }, 1|2); // true
+empty(function(){ return 0; }, 1|2); // false
+empty(function(){ return null; }, 1|2); // true
+empty(function(){ return; }, 1|2); // true
 ```
 
 ### date
 
 ```javascript
 empty(new Date()); // false
+empty(new Date(0)); // false
+empty(new Date(0), 16); // true, when mode 16
 ```
 
 ## What are modes
@@ -157,7 +170,7 @@ empty(variable); // true
 empty(variable.param); // true (no throw exception)
 empty(variable['param']); // true (no throw exception)
 empty(variable.param.subParam); // throw exception! - bad
-empty(variable.param?.subParam); // true (no throw exception) - good (stage-3)
+empty(variable.param?.subParam); // true
 
 variable = {a:0};
 empty(variable.a); // true
@@ -192,6 +205,8 @@ empty(variable); // true
 // check Date
 variable = new Date();
 empty(variable); // false
+empty(new Date(0)); // false
+empty(new Date(0), 16); // true
 
 // check empty function
 variable = function(){};

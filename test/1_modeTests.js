@@ -83,6 +83,12 @@ let variables = [
         mode: emptyMode.zero|emptyMode.string,
         result: true,
     },
+    {
+        title: 'empty(new Date(0), 16);',
+        variable: new Date(0),
+        mode: emptyMode.date,
+        result: true,
+    },
 ];
 
 for (let variable of variables) {

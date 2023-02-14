@@ -1,7 +1,7 @@
 {
   "name": "empty-lite",
-  "version": "1.2.0",
-  "description": "Check array, string, object, function, number, date on empty",
+  "version": "2.0.0",
+  "description": "Check empty for: array, string, object, function, number, date",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -12,10 +12,15 @@
   },
   "keywords": [
     "empty",
-    "array",
+    "check empty array",
     "check",
     "condition",
-    "string",
+    "check empty string",
+    "check empty object",
+    "check empty function",
+    "check empty result function",
+    "check empty number",
+    "check empty on date",
     "helper",
     "lite",
     "validation",
@@ -33,8 +38,8 @@
   },
   "homepage": "https://github.com/darkfriend/empty.js#readme",
   "devDependencies": {
-    "chai": "^4.3.0",
-    "minimist": "^1.2.5",
+    "chai": "^4.3.7",
+    "minimist": "^1.2.8",
     "mocha": "^7.2.0"
   },
   "dependencies": {

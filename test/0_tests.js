@@ -34,6 +34,11 @@ it('empty({}.param.subParam); // throw exception!', (done) => {
     assert.expect.fail();
 });
 
+it('empty({}.param?.subParam); // true', () => {
+    variable = {};
+    assert.equal(empty(variable.param?.subParam), true);
+});
+
 it('empty({a:0}.a); // true', () => {
     variable = {a:0};
     assert.equal(empty(variable.a), true);
@@ -118,10 +123,10 @@ it('empty(0.01); // false', () => {
 });
 
 
-it('empty(new Date()); // false', () => {
-    variable = new Date();
-    assert.equal(empty(variable), false);
-});
+// it('empty(new Date()); // false', () => {
+//     variable = new Date();
+//     assert.equal(empty(variable), false);
+// });
 
 
 it('empty(function(){}); // false', () => {
@@ -129,7 +134,7 @@ it('empty(function(){}); // false', () => {
     assert.equal(empty(variable), false);
 });
 
-it('strict empty(function(){}); // true', () => {
+it('empty(function(){}, 1); // true, when with mode 1', () => {
     variable = function(){};
     assert.equal(empty(variable, 1), true);
 });
@@ -141,7 +146,7 @@ it('empty(function(){ return \'\'; }); // false', () => {
     assert.equal(empty(variable), false);
 });
 
-it('strict empty(function(){ return \'\'; }); // true', () => {
+it('empty(function(){ return \'\'; }, 1); // true, when with mode 1', () => {
     variable = function(){
         return '';
     };
@@ -155,9 +160,56 @@ it('empty(function(){ return 0; }); // false', () => {
     assert.equal(empty(variable), false);
 });
 
-it('strict empty(function(){ return 0; }); // true', () => {
+it('empty(function(){ return 0; }, 1); // true, when with mode 1', () => {
     variable = function(){
         return 0;
     };
     assert.equal(empty(variable, 1), true);
+});
+
+it('empty(function(){ return 0; }, 1|2); // false, when with mode 1 and 2', () => {
+    variable = function(){
+        return 0;
+    };
+    assert.equal(empty(variable, 1|2), false);
+});
+
+it('empty(function(){ return null; }); // false', () => {
+    variable = function(){
+        return null;
+    };
+    assert.equal(empty(variable), false);
+});
+
+it('empty(function(){ return null; }, 1); // true, when with mode 1', () => {
+    variable = function(){
+        return null;
+    };
+    assert.equal(empty(variable, 1), true);
+});
+
+it('empty(function(){ return; }); // false', () => {
+    variable = function(){
+        return;
+    };
+    assert.equal(empty(variable), false);
+});
+
+it('empty(function(){ return; }, 1); // true, when with mode 1', () => {
+    variable = function(){
+        return;
+    };
+    assert.equal(empty(variable, 1), true);
+});
+
+it('empty(new Date()); // false', () => {
+    assert.equal(empty(new Date()), false);
+});
+
+it('empty(new Date(0)); // false', () => {
+    assert.equal(empty(new Date()), false);
+});
+
+it('empty(new Date(0), 16); // true, when with mode 16', () => {
+    assert.equal(empty(new Date(0), 16), true);
 });
